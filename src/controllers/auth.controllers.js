@@ -1,4 +1,4 @@
-import { clientsCollection } from "../database/db.js";
+import { clientsCollection, sessionsCollection } from "../database/db.js";
 import bcrypt from "bcrypt";
 import { v4 as uuid } from "uuid";
 
@@ -15,11 +15,11 @@ export async function signUp(req, res) {
          return
     } 
 }
-/* 
+
 export async function signIn(req, res) {
     const user = res.locals.user;
 
-    const token = uuidV4();
+    const token = uuid();
 
     try {
         await sessionsCollection.insertOne({ token, userId: user._id });
@@ -28,4 +28,4 @@ export async function signIn(req, res) {
         console.log(err);
         res.sendStatus(500);
     }
-} */
+} 

@@ -26,3 +26,19 @@ export const clientSchemaValidation = joi.object({
         .label('Confirm password')
         .messages({ 'any.only': '{{#label}} does not match' })
 });
+
+export const signInSchemaValidation = joi.object({
+    login: joi.alternatives().try(
+            joi.string().lowercase().email(),
+            joi.string().min(3)
+        )
+        .required(), 
+    
+    password: joi.any().required().
+        messages({
+            'number.base': `"password" should be only a 'number'`,
+            'number.empty': `"password" cannot be empty`,
+            'any.required': `"password" is required`,
+        }),
+    
+});
