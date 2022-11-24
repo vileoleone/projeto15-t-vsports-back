@@ -19,7 +19,7 @@ export function SignUpBodyValidation(req, res, next) {
 
 export async function checkuserNameAndEmail(req, res, next) {
     const user = res.locals.user
-
+    console.log(user)
     try {
         const findEmailorUsername = await clientsCollection.findOne({
             $or: [
@@ -41,7 +41,8 @@ export async function checkuserNameAndEmail(req, res, next) {
 }
 
 export function SignInSchemaValidation(req, res, next) {
-     const user = req.body
+    const user = req.body
+    console.log(user)
     const { error } = signInSchemaValidation.validate(user, { abortEarly: false });
 
     if (error) {
@@ -54,6 +55,7 @@ export function SignInSchemaValidation(req, res, next) {
 
 export async function signInBodyValidation(req, res, next) {
     const user = res.locals.user;
+    //console.log(user)
     const { login, password } = user
 
     try {
@@ -69,13 +71,14 @@ export async function signInBodyValidation(req, res, next) {
         if (!passwordOk) {
             return res.status(401).send("Email or Password incorrect")
         }
-
+        delete (findEmailorLogin.password)
+        res.locals.user = findEmailorLogin;
     } catch (err) {
         console.log(err);
         return res.sendStatus(500);
     }
-    delete(user.password)
-    res.locals.user = user;
+    
+   
 
     next();
 }

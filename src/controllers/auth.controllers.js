@@ -18,14 +18,16 @@ export async function signUp(req, res) {
 
 export async function signIn(req, res) {
     const user = res.locals.user;
-
-    const token = uuid();
-
-    try {
-        await sessionsCollection.insertOne({ token, userId: user._id });
-        res.send({ token });
-    } catch (err) {
-        console.log(err);
-        res.sendStatus(500);
+    let token;
+    const logInUserToken = await sessionsCollection.findOne({ userId: user._id })
+    if (logInUserToken) {
+        token = logInUserToken.token
+    } else {
+        token = uuid()
+        await sessionsCollection.insertOne({
+            userId:user._id,
+            token
+        })
     }
+    res.status(200).send(token)
 } 
