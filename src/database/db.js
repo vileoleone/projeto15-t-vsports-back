@@ -3,7 +3,7 @@ import dotenv from "dotenv"
 dotenv.config()
 
 //setup for MongoDB server
-const mongoClient = new MongoClient(process.env.MONGO_URI);
+const mongoClient = new MongoClient(process.env.MONGO_URL);
 
 
 try {
