@@ -6,6 +6,7 @@ import ProductRoutes from "./routes/Products.routes.js"
 import myCartRoutes from "./routes/MyCart.routes.js"
 
 
+
 dotenv.config();
 
 const app = express();
@@ -15,6 +16,7 @@ app.use(express.json());
 app.use(authRoutes);
 app.use(ProductRoutes);
 app.use(myCartRoutes);
+
 
 
 const port = process.env.PORT || 5000;

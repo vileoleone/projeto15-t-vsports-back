@@ -31,7 +31,6 @@ export async function signIn(req, res) {
             token
         })
     }
-
     res.status(200).send({ token, userName })
 } 
 
