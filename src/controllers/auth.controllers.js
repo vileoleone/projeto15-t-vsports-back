@@ -18,6 +18,8 @@ export async function signUp(req, res) {
 
 export async function signIn(req, res) {
     const user = res.locals.user;
+    console.log(user.userName)
+    const userName = user.userName
     let token;
     const logInUserToken = await sessionsCollection.findOne({ userId: user._id })
     if (logInUserToken) {
@@ -29,5 +31,5 @@ export async function signIn(req, res) {
             token
         })
     }
-    res.status(200).send(token)
+    res.status(200).send({ token, userName })
 } 
