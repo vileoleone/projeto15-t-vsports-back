@@ -30,3 +30,18 @@ export async function getObjectsInCart(req, res) {
         return
     } 
 }
+
+export async function deleteObjectsInCart(req, res) {
+    const userId = res.locals.userId
+    console.log(userId)
+    try {
+        const productsInCart = await cartCollection
+            .deleteOne({ userId })
+        res.send("sucesso ao deletar");
+        return
+    } catch (err) {
+        console.log(err);
+        res.sendStatus(500);
+        return
+    } 
+}
