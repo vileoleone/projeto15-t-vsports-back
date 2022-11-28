@@ -20,7 +20,7 @@ export async function myCartPostTokenValidation(req, res, next) {
     next()
 }
 
-export async function myCarDeleteTokenValidation(req, res, next) {
+export async function myCartDeleteTokenValidation(req, res, next) {
     const { token } = req.params;
 
     if (!token) {
@@ -32,6 +32,19 @@ export async function myCarDeleteTokenValidation(req, res, next) {
 
     if (!userId) {
         res.status(401).send("user array in myCart was not found")
+        return
+    };
+
+    res.locals.userId = userId
+
+    next()
+}
+
+export async function myCartDeleteProductValidation(req, res, next) {
+    const { id } = req.params;
+    userId = res.locals.userId 
+    if (!id) {
+        res.status(401).send("missing tproduct id for delete action")
         return
     };
 
