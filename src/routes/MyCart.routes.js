@@ -4,11 +4,11 @@ import { myCartDeleteProductValidation, myCartDeleteTokenValidation, myCartPostT
 
 const router = Router(); 
 
-router.delete("/myCart/:id", myCartDeleteTokenValidation, deleteObjectsInCart)
+router.delete("/myCart/:token", myCartDeleteTokenValidation, deleteObjectsInCart)
 // Validação de modelos para post in Cart
 router.use(myCartPostTokenValidation)
 router.post("/myCart", postInCart)
 router.get("/myCart", getObjectsInCart)
-router.delete("/myCart/delete/:id", myCartDeleteProductValidation, deleteProductsInCart)
+//router.delete("/myCart/delete/:id", myCartDeleteProductValidation, deleteProductsInCart)
 
 export default router;

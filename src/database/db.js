@@ -5,7 +5,6 @@ dotenv.config()
 //setup for MongoDB server
 const mongoClient = new MongoClient(process.env.MONGO_URI);
 
-
 try {
     mongoClient.connect(() => {
        console.log("connected with database")
@@ -13,7 +12,6 @@ try {
 } catch (error) {
     console.log(error)
 }
-
 
 export const db = mongoClient.db("tvsportsDataBase");
 export const clientsCollection = db.collection("tvsportsDataBase_Clients");

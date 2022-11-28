@@ -3,6 +3,7 @@ import { sessionsCollection } from "../database/db.js";
 export async function myCartPostTokenValidation(req, res, next) {
     const { authorization } = req.headers;
     const token = authorization?.replace('Bearer ', '');
+    
     if (token === undefined) {
         res.status(401).send("missing token")
         return
@@ -14,16 +15,16 @@ export async function myCartPostTokenValidation(req, res, next) {
         res.status(401).send("user array in myCart was not found")
         return
     };
-    
-    res.locals.userId = userId
+
+    res.locals.userId = userId.userId
     
     next()
 }
 
 export async function myCartDeleteTokenValidation(req, res, next) {
-    const { token } = req.params;
+    const { token }  = req.params;
 
-    if (!token) {
+     if (!token) {
         res.status(401).send("missing token")
         return
     };
@@ -37,7 +38,7 @@ export async function myCartDeleteTokenValidation(req, res, next) {
 
     res.locals.userId = userId
 
-    next()
+    next() 
 }
 
 export async function myCartDeleteProductValidation(req, res, next) {

@@ -16,7 +16,6 @@ export async function postInCart(req, res) {
 
 export async function getObjectsInCart(req, res) {
     const userId = res.locals.userId
-    console.log(userId)
     ;
      try {
         const productsInCart = await cartCollection
@@ -37,7 +36,7 @@ export async function deleteObjectsInCart(req, res) {
     try {
         const productsInCart = await cartCollection
             .deleteOne({ userId })
-        res.send("sucesso ao deletar");
+        res.send(userId);
         return
     } catch (err) {
         console.log(err);
