@@ -50,7 +50,7 @@ export async function deleteProductsInCart(req, res) {
     const { id } = req.params
     try {
         const productsInCart = await cartCollection
-            .deleteOne({ userId })
+            .updateOne({ userId }, { $pull: { "achieve": 90 } })
         res.send("sucesso ao deletar");
         return
     } catch (err) {

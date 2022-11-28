@@ -9,6 +9,6 @@ router.delete("/myCart/:token", myCartDeleteTokenValidation, deleteObjectsInCart
 router.use(myCartPostTokenValidation)
 router.post("/myCart", postInCart)
 router.get("/myCart", getObjectsInCart)
-//router.delete("/myCart/delete/:id", myCartDeleteProductValidation, deleteProductsInCart)
+router.patch("/myCart/delete/:product_id", myCartDeleteProductValidation, deleteProductsInCart)
 
 export default router;
