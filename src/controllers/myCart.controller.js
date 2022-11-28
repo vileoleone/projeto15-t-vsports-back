@@ -6,7 +6,7 @@ export async function postInCart(req, res) {
 
     const newArray = { userId, products }
     try {
-        await cartCollection.insert(newArray);
+        await cartCollection.insertOne(newArray);
         res.sendStatus(200);
     } catch (err) {
         console.log(err);
