@@ -22,8 +22,7 @@ export async function checkObjProduct (req, res, next){
     try {
         const findExistingProduct = await portfolioCollection.findOne({
             $or: [
-                {id: product.id},
-                {name: product.name},
+                {productName: product.productName},
                 {image: product.image}]
         })
         console.log(findExistingProduct);
